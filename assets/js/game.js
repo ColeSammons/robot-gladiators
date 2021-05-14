@@ -1,15 +1,15 @@
-var fightOrSkip = function() {
+var fightOrSkip = function () {
   var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
 
   if (promptFight === "" || promptFight === null) {
     window.alert("You need to provide a valid answer! Please try again.");
     return fightOrSkip();
   }
-  
+
   promptFight = promptFight.toLowerCase();
   if (promptFight === "skip") {
     var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-    
+
     if (confirmSkip) {
       window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
       playerInfo.playerMoney = playerInfo.money - 10;
@@ -18,11 +18,11 @@ var fightOrSkip = function() {
   }
   return false;
 }
-  
+
 
 var fight = function (enemy) {
   while (playerInfo.health > 0 && enemy.health > 0) {
-    if(fightOrSkip()) {
+    if (fightOrSkip()) {
       break;
     }
 
@@ -66,7 +66,7 @@ var startGame = function () {
   for (var i = 0; i < enemyInfo.length; i++) {
     if (playerInfo.health > 0) {
       window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
-      
+
       var pickedEnemyObj = enemyInfo[i];
 
       pickedEnemyObj.health = randomNumber(40, 60);
@@ -110,20 +110,18 @@ var endGame = function () {
 
 var shop = function () {
   var shopOptionPrompt = window.prompt(
-    "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
+    "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE."
   );
 
+  shopOptionPrompt = parseInt(shopOptionPrompt);
   switch (shopOptionPrompt) {
-    case "REFILL":
-    case "refill": //new case
+    case 1:
       playerInfo.refillHealth();
       break;
-    case "UPGRADE": // new case
-    case "upgrade":
+    case 2:
       playerInfo.upgradeAttack();
       break;
-    case "LEAVE": // new case
-    case "leave":
+    case 3:
       window.alert("Leaving the store.");
       break;
     default:
@@ -139,7 +137,7 @@ var randomNumber = function (min, max) {
   return value;
 }
 
-var getPlayerName = function() {
+var getPlayerName = function () {
   var name = "";
 
   while (name === "" || name === null) {
